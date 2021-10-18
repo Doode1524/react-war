@@ -5,30 +5,44 @@ import { useSelector } from "react-redux";
 const Cards = () => {
   const p1Cards = useSelector((state) => state.p1Cards);
   const p2Cards = useSelector((state) => state.p2Cards);
-  const [p1Top, setP1Top] = useState({});
-  const [p2Top, setP2Top] = useState({});
+  const [hand, setHand] = useState({});
+  const [handWinner, setHandWinner] = useState("");
 
   useEffect(() => {
+    checkWinningHand(hand);
+  }, [hand]);
 
-  }, [])
+  const checkWinningHand = (hand) => {
+    if (hand.p1 && hand.p2) {
+      if (parseInt(hand.p1.value) > parseInt(hand.p2.value))
+        setHandWinner("Player 1");
+      if (parseInt(hand.p1.value) < parseInt(hand.p2.value))
+        setHandWinner("Player 2!!");
+      if (parseInt(hand.p1.value) === parseInt(hand.p2.value))
+        setHandWinner("Warrrrr!!");
+    }
+  };
 
   const handlePlayclick = () => {
     if (p1Cards.length > 0 && p2Cards.length > 0) {
-      setP1Top(p1Cards.pop());
-      setP2Top(p2Cards.pop());
+      setHand({
+        p1: p1Cards.pop(),
+        p2: p2Cards.pop(),
+      });
     }
   };
 
   return (
     <div>
-      <button onClick={handlePlayclick}>Play</button>
+      <h4>Winner: {handWinner}</h4>
+      <button onClick={() => handlePlayclick()}>Play</button>
       <div>
         <h3>Player 1 Cards</h3>
-        {p1Top.image ? <img src={p1Top.image} /> : null}
+        {hand.p1 ? <img src={hand.p1.image} /> : null}
       </div>
       <div>
         <h3>Player 2 Cards</h3>
-        {p2Top.image ? <img src={p2Top.image} /> : null}
+        {hand.p2 ? <img src={hand.p2.image} /> : null}
       </div>
     </div>
   );
