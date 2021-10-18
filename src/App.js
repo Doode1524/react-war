@@ -9,11 +9,11 @@ function App() {
   const deck = useSelector((state) => state.deck);
   const loading = useSelector((state) => state.loading);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (loading === false) {
-      await dispatch(getCards(deck.deck_id));
+      dispatch(getCards(deck.deck_id));
     } else {
-      await dispatch(getDeck());
+      dispatch(getDeck());
     }
   }, [deck]);
 
