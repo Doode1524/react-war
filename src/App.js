@@ -22,8 +22,8 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  console.log(p2Cards, '1')
-  console.log(p1Cards, '2')
+  console.log(p2Cards, '2')
+  console.log(p1Cards, '1')
 
   return (
     <div>
