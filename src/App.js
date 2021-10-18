@@ -4,8 +4,11 @@ import { getDeck, getCards } from "./actions";
 
 function App() {
   const dispatch = useDispatch();
+
   const deck = useSelector((state) => state.deck);
   const loading = useSelector((state) => state.loading);
+  const p1Cards = useSelector((state) => state.p1Cards);
+  const p2Cards = useSelector((state) => state.p2Cards);
 
   useEffect(async () => {
     if (loading === false) {
@@ -15,11 +18,12 @@ function App() {
     }
   }, [loading]);
 
-  console.log(deck, "deck2");
-
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  console.log(p2Cards, '1')
+  console.log(p1Cards, '2')
 
   return (
     <div>
