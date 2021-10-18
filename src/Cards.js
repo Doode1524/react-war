@@ -10,16 +10,25 @@ const Cards = () => {
 
   useEffect(() => {
     checkWinningHand(hand);
+    console.log(p1Cards, "p1");
+    console.log(p2Cards, "p2");
   }, [hand]);
 
   const checkWinningHand = (hand) => {
     if (hand.p1 && hand.p2) {
-      if (parseInt(hand.p1.value) > parseInt(hand.p2.value))
+      if (parseInt(hand.p1.value) > parseInt(hand.p2.value)) {
         setHandWinner("Player 1");
-      if (parseInt(hand.p1.value) < parseInt(hand.p2.value))
+        p1Cards.unshift(hand.p1);
+        p1Cards.unshift(hand.p2);
+      }
+      if (parseInt(hand.p1.value) < parseInt(hand.p2.value)) {
         setHandWinner("Player 2!!");
-      if (parseInt(hand.p1.value) === parseInt(hand.p2.value))
+        p2Cards.unshift(hand.p1);
+        p2Cards.unshift(hand.p2);
+      }
+      if (parseInt(hand.p1.value) === parseInt(hand.p2.value)) {
         setHandWinner("Warrrrr!!");
+      }
     }
   };
 
