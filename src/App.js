@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDeck, getCards } from "./actions";
+import Cards from "./Cards";
 
 function App() {
   const dispatch = useDispatch();
@@ -12,22 +13,23 @@ function App() {
 
   useEffect(async () => {
     if (loading === false) {
-      dispatch(getCards(deck.deck_id));
+      await dispatch(getCards(deck.deck_id));
     } else {
-      dispatch(getDeck());
+      await dispatch(getDeck());
     }
-  }, [loading]);
+  }, [deck]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  console.log(p2Cards, '2')
-  console.log(p1Cards, '1')
+  console.log(p2Cards, "2");
+  console.log(p1Cards, "1");
 
   return (
     <div>
-      <h1>hello world</h1>
+      <h1>WAR!!</h1>
+      <Cards />
     </div>
   );
 }
