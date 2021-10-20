@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 const Cards = () => {
   const p1Cards = useSelector((state) => state.p1Cards);
   const p2Cards = useSelector((state) => state.p2Cards);
+
   const [hand, setHand] = useState({});
   const [handWinner, setHandWinner] = useState("");
 
